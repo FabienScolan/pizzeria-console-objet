@@ -2,6 +2,7 @@ package fr.pizzeria.console;
 
 import java.util.Scanner;
 
+import fr.pizzeria.exception.StockageException;
 import fr.pizzeria.model.PizzaMemDao;
 import fr.pizzeria.vue.*;
 
@@ -23,7 +24,13 @@ public class PizzeriaConsoleAdminApp {
 		option = questionUser.nextInt();
 		while (option != 99) {
 			menupizza = MenuServiceFactory.choixMenu(option, questionUser, pizzaDb);
-			menupizza.executeUC(pizzaDb, questionUser);
+			try {
+				menupizza.executeUC(pizzaDb, questionUser);
+			} catch (StockageException e) {
+				// TODO Auto-generated catch block
+				//e.printStackTrace();
+				System.out.println(e.getMessage());
+			}
 			System.out.println("\n**** Pizzeria Administration ****");
 			System.out.println("1. Lister les pizzas");
 			System.out.println("2. Ajouter une nouvelle pizza");
