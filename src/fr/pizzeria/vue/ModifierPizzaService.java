@@ -5,6 +5,7 @@ import java.util.Scanner;
 import fr.pizzeria.exception.SavePizzaException;
 import fr.pizzeria.exception.StockageException;
 import fr.pizzeria.exception.UpdatePizzaException;
+import fr.pizzeria.model.CategoriePizza;
 import fr.pizzeria.model.Pizza;
 import fr.pizzeria.model.PizzaMemDao;
 
@@ -26,7 +27,14 @@ public class ModifierPizzaService extends MenuService {
 		System.out.println("Veuillez saisir le nouveau prix : ");
 		double editPrix = Double.parseDouble(questionUser.next());
 		if (editPrix < 0.0) throw new SavePizzaException();
-		Pizza editPizza = new Pizza(editCode, editNom, editPrix);
+		System.out.println("Veuillez définir le type de la pizza : ");
+		CategoriePizza catPizza=null;
+		try {
+		    catPizza = CategoriePizza.valueOf(questionUser.next() );
+		} catch ( IllegalArgumentException e ) {
+		    System.err.println( "Ce type de pizza n'existe pas" );
+		}
+		Pizza editPizza = new Pizza(editCode, editNom, editPrix, catPizza);
 		pizzaDao.updatePizza(editCode, editPizza);
 	}
 
