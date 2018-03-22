@@ -18,5 +18,9 @@ public enum CategoriePizza {
 	public void setType(String type) {
 		this.type = type;
 	}
+	/*public String toString(){
+		return this.type.;
+		
+	}*/
 
 }

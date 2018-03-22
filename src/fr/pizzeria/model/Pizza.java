@@ -1,10 +1,22 @@
 package fr.pizzeria.model;
 
+import fr.pizzeria.utils.StringUtils;
+import fr.pizzeria.utils.ToString;
+import fr.pizzeria.validator.Rule;
+
 public class Pizza {
+	@ToString
 	private int id;
-	private String code, libelle;
+	@Rule(length=4)
+	@ToString(toUpperCase=true, separateur= " -> ")
+	private String code;
+	@ToString(separateur= " -> ")
+	private String libelle;
+	@Rule(min=0)
+	@ToString (separateur= " : ")
 	private double prix;
 	static int compteur;
+	@ToString
 	private CategoriePizza typePizza;
 
 	public int getId() {
@@ -39,7 +51,7 @@ public class Pizza {
 		this.code = code;
 		this.libelle = libelle;
 		this.prix = prix;
-		this.typePizza=typePizza;
+		this.typePizza = typePizza;
 		id = compteur;
 		compteur++;
 
@@ -61,7 +73,25 @@ public class Pizza {
 
 	@Override
 	public String toString() {
-		return code + " -> " + libelle + " (" + prix + "€)" + " type : " + typePizza.getType();
+		/*Class<?> c1 = this.getClass(); 
+		Field[] attributes = c1.getDeclaredFields();
+		String chaine = "";
+		try {
+			for (Field attr: attributes){
+				if (attr.isAnnotationPresent(ToString.class)){
+					ToString annotation = attr.getAnnotation(ToString.class);
+					boolean upperCase = annotation.toUpperCase();
+					String separ = annotation.separateur();
+					Object attrValue = attr.get(this);
+					if (upperCase) attrValue = attrValue.toString().toUpperCase();
+					chaine+= attrValue + separ;
+				}
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} */
+		return StringUtils.generateString(this);
 	}
 
 }

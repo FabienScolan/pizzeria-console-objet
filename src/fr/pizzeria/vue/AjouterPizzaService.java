@@ -7,6 +7,7 @@ import fr.pizzeria.exception.StockageException;
 import fr.pizzeria.model.CategoriePizza;
 import fr.pizzeria.model.Pizza;
 import fr.pizzeria.model.PizzaMemDao;
+import fr.pizzeria.validator.Validator;
 
 public class AjouterPizzaService extends MenuService {
 
@@ -21,7 +22,8 @@ public class AjouterPizzaService extends MenuService {
 		String nvNom = questionUser.next();
 		System.out.println("Veuillez saisir le prix : ");
 		double nvPrix = Double.parseDouble(questionUser.next());
-		if (nvPrix < 0.0) throw new SavePizzaException("Impossible de mettre un prix inférieur à 0€");
+		//if (nvPrix < 0.0) throw new SavePizzaException("Impossible de mettre un prix inférieur à 0€");
+		Validator.Check(nvPrix);
 		System.out.println("Veuillez définir le type de la pizza : ");
 		//comment savoir type enum via scanner
 		CategoriePizza catPizza=null;
