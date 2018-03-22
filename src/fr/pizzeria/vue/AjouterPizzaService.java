@@ -23,7 +23,6 @@ public class AjouterPizzaService extends MenuService {
 		System.out.println("Veuillez saisir le prix : ");
 		double nvPrix = Double.parseDouble(questionUser.next());
 		//if (nvPrix < 0.0) throw new SavePizzaException("Impossible de mettre un prix inférieur à 0€");
-		Validator.Check(nvPrix);
 		System.out.println("Veuillez définir le type de la pizza : ");
 		//comment savoir type enum via scanner
 		CategoriePizza catPizza=null;
@@ -33,6 +32,7 @@ public class AjouterPizzaService extends MenuService {
 		    System.err.println( "Ce type de pizza n'existe pas" );
 		}
 		Pizza nvPizza = new Pizza(nvCode, nvNom, nvPrix, catPizza);
+		Validator.Check(nvPizza);
 		pizzaDao.saveNewPizza(nvPizza);
 	}
 	
