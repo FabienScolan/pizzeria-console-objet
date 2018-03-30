@@ -3,7 +3,6 @@ package fr.pizzeria.vue;
 import java.util.Scanner;
 
 import fr.pizzeria.exception.DeletePizzaException;
-import fr.pizzeria.exception.SavePizzaException;
 import fr.pizzeria.exception.StockageException;
 import fr.pizzeria.model.Pizza;
 import fr.pizzeria.model.PizzaMemDao;

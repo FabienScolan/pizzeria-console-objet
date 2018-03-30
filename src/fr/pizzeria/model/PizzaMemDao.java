@@ -27,14 +27,14 @@ public class PizzaMemDao implements IPizzaDao {
 
 	@Override
 	public void saveNewPizza(Pizza pizza) {
-		pizzas.add(pizza);
+		if (pizza != null) pizzas.add(pizza);
 
 	}
 
 	@Override
 	public void updatePizza(String codePizza, Pizza pizza) {
 		// TODO Auto-generated method stub
-		if (this.pizzaExists(codePizza)) {
+		if (this.pizzaExists(codePizza) && pizza!=null) {
 			Pizza oldPizza = findPizzaByCode(codePizza);
 			oldPizza.setCode(pizza.getCode());
 			oldPizza.setLibelle(pizza.getLibelle());
