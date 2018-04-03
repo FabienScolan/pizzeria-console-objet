@@ -2,9 +2,11 @@ package test;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Test;
+import org.mockito.Mockito;
 
 import fr.pizzeria.model.CategoriePizza;
 import fr.pizzeria.model.Pizza;
@@ -23,7 +25,21 @@ public class PizzaMemDaoTest {
 		PizzaMemDao pdao = new PizzaMemDao();
 		List <Pizza> lpizzas =pdao.findAllPizzas();
 		assertTrue(lpizzas.size()==8);
-		
+			
+	}
+	@Test
+	public void testFindAllPizzasMock(){
+		PizzaMemDao p2dao = Mockito.mock(PizzaMemDao.class);
+		Mockito.when(p2dao.findAllPizzas()).thenReturn(null);
+		List <Pizza> l2pizzas =p2dao.findAllPizzas();
+		assertTrue(l2pizzas==null);
+		List <Pizza> ltpizzas = new PizzaMemDao().findAllPizzas();
+		ltpizzas.set(0, null);
+		ltpizzas.set(1, new Pizza(null,"code nul",0.0,CategoriePizza.SANS_VIANDE));
+		Mockito.when(p2dao.findAllPizzas()).thenReturn(ltpizzas);
+		l2pizzas = p2dao.findAllPizzas();
+		assertTrue(l2pizzas.get(0)==null);
+		assertTrue(l2pizzas.get(1).getCode()==null);
 	}
 
 	@Test

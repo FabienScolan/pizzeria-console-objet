@@ -19,19 +19,16 @@ public class PizzaMemDao implements IPizzaDao {
 		pizzas.add(new Pizza(7, "IND", "L'Indienne", 14.00, CategoriePizza.VIANDE));
 	}
 
-	@Override
 	public List<Pizza> findAllPizzas() {
 		// TODO Auto-generated method stub
 		return pizzas;
 	}
 
-	@Override
 	public void saveNewPizza(Pizza pizza) {
 		if (pizza != null) pizzas.add(pizza);
 
 	}
 
-	@Override
 	public void updatePizza(String codePizza, Pizza pizza) {
 		// TODO Auto-generated method stub
 		if (this.pizzaExists(codePizza) && pizza!=null) {
@@ -44,7 +41,6 @@ public class PizzaMemDao implements IPizzaDao {
 
 	}
 
-	@Override
 	public void deletePizza(String codePizza) {
 		// TODO Auto-generated method stub
 		if (this.pizzaExists(codePizza)) {
@@ -52,7 +48,6 @@ public class PizzaMemDao implements IPizzaDao {
 		}
 	}
 
-	@Override
 	public Pizza findPizzaByCode(String codePizza) {
 		// TODO Auto-generated method stub
 		for (Pizza pizza : pizzas) {
@@ -63,7 +58,6 @@ public class PizzaMemDao implements IPizzaDao {
 		return null;
 	}
 
-	@Override
 	public boolean pizzaExists(String codePizza) {
 		// TODO Auto-generated method stub
 		return (findPizzaByCode(codePizza) != null);
